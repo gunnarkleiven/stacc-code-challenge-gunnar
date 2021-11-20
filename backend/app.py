@@ -12,6 +12,12 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 stacc_api_server = "https://stacc-code-challenge-2021.azurewebsites.net"
 
 
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return 'You want path: %s' % path
+
+
 @app.route("/hello", methods=['GET'])
 def hello_world():
     return "Hello World!"
