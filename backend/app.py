@@ -11,33 +11,31 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 stacc_api_server = "https://stacc-code-challenge-2021.azurewebsites.net"
 
+
 @app.route("/hello", methods=['GET'])
 def hello_world():
     return "Hello World!"
-    
+
 
 @app.route("/api/pep/", methods=['GET'])
-def test_scatt_api_with_name():
+def test_stacc_api_with_name():
     if 'name' in request.args:
         name = request.args["name"]
     else:
         return "No name field in the arguments"
 
-    
     payload = {"name": name}
     r = requests.get(stacc_api_server + "/api/pep", params=payload)
     return r.json()
 
 
-
 @app.route("/api/enheter/", methods=['GET'])
-def test_scatt_api_with_orgnr():
+def test_stacc_api_with_orgnr():
     if 'orgNr' in request.args:
-        orgNr = request.args["orgNr"]
+        org_nr = request.args["orgNr"]
     else:
-        return "No organisatios number in the arguments"
+        return "No organisation number in the arguments"
 
-    
-    payload = {"orgNr": orgNr}
+    payload = {"orgNr": org_nr}
     r = requests.get(stacc_api_server + "/api/enheter", params=payload)
     return r.json()

@@ -134,7 +134,6 @@ function Home() {
             <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 16}} component="form" noValidate autoComplete="off">
                 <ToggleButtonGroup
                     orientation="horizontal"
-                    exclusive
                     value={alignment}
                     exclusive
                     onChange={handleAlignment}
