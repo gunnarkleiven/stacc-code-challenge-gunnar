@@ -1,0 +1,7 @@
+{
+  "name": "stacc-code-challenge-gunnar",
+  "version": "1.0.0",
+  "scripts": {
+    "heroku-prebuild": "cd frontend/ && npm install && mnpm build && cd .."
+  }
+}
