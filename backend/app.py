@@ -27,6 +27,7 @@ def hello_world():
 def test_stacc_api_with_name():
     if 'name' in request.args:
         name = request.args["name"]
+        name = request.args["name"]
     else:
         return "No name field in the arguments"
 
@@ -44,4 +45,23 @@ def test_stacc_api_with_orgnr():
 
     payload = {"orgNr": org_nr}
     r = requests.get(stacc_api_server + "/api/enheter", params=payload)
+    print(f'API request status = {r.status_code}')
+    print(f'response r: {r.text}')
+
+    if r.status_code == 404:
+        custom_response = requests.models.Response()
+        custom_response.status_code = 404
+        custom_response._content = b'{"status": 404, "data": {"status": 400}}'
+
+        print(f'Custom response: {custom_response}')
+
+        return custom_response.json()
+
+
+    # r_dict = json.loads(r.text)
+    #
+    # if 'status' in r_dict.keys() and r_dict['keys'] == 400:
+    #     print("Custom status code 400")
+    #     r.status_code = 400
+
     return r.json()
